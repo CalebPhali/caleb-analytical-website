@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Services | Caleb Analytical Solutions</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7faff;
+      color: #002B5B;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #002B5B;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      flex-wrap: wrap;
+    }
+
+    header img {
+      height: 45px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 6px 12px;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: #004B8E;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 50px auto 80px auto;
+      padding: 0 20px;
+      flex: 1;
+    }
+
+    main h1 {
+      font-size: 36px;
+      color: #002B5B;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    section.service-section {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 6px 14px rgba(0,43,91,0.1);
+      padding: 25px 30px;
+      margin-bottom: 30px;
+    }
+
+    section.service-section h2 {
+      margin-top: 0;
+      color: #004B8E;
+      border-bottom: 2px solid #004B8E;
+      padding-bottom: 8px;
+    }
+
+    section.service-section p {
+      font-size: 16px;
+      line-height: 1.5;
+      color: #333;
+    }
+
+    .more-button {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #004B8E;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .more-button:hover {
+      background-color: #0060C0;
+    }
+
+    footer {
+      background: #002B5B;
+      color: white;
+      text-align: center;
+      padding: 20px 15px;
+      font-size: 14px;
+      margin-top: auto;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+      }
+
+      header {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Index</a></li>
+      <li><a href="home.html" class="active">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <h1>Our Services</h1>
+
+  <section id="consultation" class="service-section">
+    <h2>Consultation</h2>
+    <p>Strategic guidance to optimize your analytical processes and solve complex problems with expert advice.</p>
+    <a href="consultations.html#" class="more-button">More</a>
+  </section>
+
+  <section id="mineral-processing" class="service-section">
+    <h2>Mineral Processing</h2>
+    <p>Expert support in mineral beneficiation and processing tailored to your unique operational requirements.</p>
+    <a href="MineralProcessing.html#" class="more-button">More</a>
+  </section>
+
+  <section id="sample-preparation" class="service-section">
+    <h2>Sample Preparation</h2>
+    <p>Professional mounting, polishing, and preparation of samples to ensure accurate testing and imaging.</p>
+    <a href="sampleprep.html#" class="more-button">More</a>
+  </section>
+
+  <section id="metallography" class="service-section">
+    <h2>Metallography</h2>
+    <p>Microscopic examination and analysis of metals and alloys to ensure quality assurance and failure analysis.</p>
+    <a href="metallography.html#" class="more-button">More</a>
+  </section>
+
+  <section id="material-characterisation" class="service-section">
+    <h2>Material Characterisation</h2>
+    <p>Comprehensive analysis of material properties supporting research, development, and quality control.</p>
+    <a href="material.html#" class="more-button">More</a>
+  </section>
+
+  <section id="chemical-analysis" class="service-section">
+    <h2>Chemical Analysis</h2>
+    <p>Precise testing of chemical composition using advanced techniques to ensure accuracy and regulatory compliance.</p>
+    <a href="Chemical.html#" class="more-button">More</a>
+  </section>
+
+  <section id="analytical-chemistry" class="service-section">
+    <h2>Analytical Chemistry</h2>
+    <p>Advanced chemical analysis services to support product development, quality assurance, and research.</p>
+    <a href="Analytical.html#" class="more-button">More</a>
+  </section>
+
+  <section id="troubleshooting" class="service-section">
+    <h2>Troubleshooting</h2>
+    <p>Problem-solving services to identify and resolve analytical and material characterization issues efficiently.</p>
+    <a href="trouble.html#" class="more-button">More</a>
+  </section>
+
+  <section id="biodiesel-characterisation" class="service-section">
+    <h2>Biodiesel Characterisation</h2>
+    <p>Specialized testing and analysis for biodiesel quality and performance to meet industry standards.</p>
+    <a href="BioChar.html#" class="more-button">More</a>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Caleb Analytical Solutions. All rights reserved.
+</footer>
+
+</body>
+</html>

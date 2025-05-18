@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Caleb Analytical Solutions</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9fbff;
+      color: #002B5B;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #002B5B;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      flex-wrap: wrap;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      padding: 6px 12px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      background-color: #004B8E;
+    }
+
+    /* Search bar top right */
+    .search-container {
+      position: relative;
+      margin-left: auto;
+      max-width: 300px;
+    }
+    .search-container input[type="text"] {
+      width: 100%;
+      padding: 6px 12px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      outline: none;
+    }
+    .search-container input[type="text"]:focus {
+      box-shadow: 0 0 8px rgba(0,85,170,0.6);
+      border: 1px solid #0055aa;
+    }
+    .suggestions-list {
+      position: absolute;
+      top: 38px;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #ccc;
+      border-top: none;
+      max-height: 180px;
+      overflow-y: auto;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      z-index: 1000;
+      display: none;
+      border-radius: 0 0 5px 5px;
+      color: black;
+    }
+    .suggestions-list li {
+      padding: 8px 12px;
+      cursor: pointer;
+      color: black;
+    }
+    .suggestions-list li:hover {
+      background-color: #e6f0ff;
+    }
+
+    /* Centered large logo */
+    .logo-container {
+      margin: 50px auto 40px auto;
+      text-align: center;
+    }
+    .logo-container img {
+      max-width: 320px;
+      width: 80vw;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* Content sections */
+    .content-section {
+      max-width: 800px;
+      margin: 30px auto 60px auto;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .content-section h2 {
+      font-size: 30px;
+      color: #002B5B;
+      margin-bottom: 15px;
+    }
+    .content-section p {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    /* Customers section */
+    .customers-section {
+      max-width: 900px;
+      margin: 0 auto 60px auto;
+      padding: 20px;
+      text-align: center;
+      background-color: #e6f0ff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 43, 91, 0.1);
+    }
+
+    .customers-section h2 {
+      font-size: 28px;
+      color: #002B5B;
+      margin-bottom: 25px;
+    }
+
+    .customer-logos {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding-bottom: 10px;
+      scrollbar-width: thin;
+      scrollbar-color: #0055aa #cce0ff;
+    }
+    .customer-logos::-webkit-scrollbar {
+      height: 8px;
+    }
+    .customer-logos::-webkit-scrollbar-track {
+      background: #cce0ff;
+      border-radius: 10px;
+    }
+    .customer-logos::-webkit-scrollbar-thumb {
+      background-color: #0055aa;
+      border-radius: 10px;
+    }
+
+    .customer-logos img {
+      flex: 0 0 auto;
+      height: 60px;
+      width: auto;
+      background: white;
+      border-radius: 6px;
+      padding: 8px;
+      box-shadow: 0 2px 6px rgba(0,43,91,0.15);
+      object-fit: contain;
+      user-select: none;
+    }
+
+    footer {
+      background-color: #002B5B;
+      color: white;
+      text-align: center;
+      padding: 20px 15px;
+      font-size: 14px;
+      margin-top: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .logo-container img {
+        max-width: 240px;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+        width: 100%;
+      }
+      .search-container {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+      }
+      .customer-logos {
+        gap: 15px;
+      }
+      .customer-logos img {
+        height: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Index</a></li>
+      <li><a href="home.html" class="active">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="What are you looking for?" aria-label="Site Search" autocomplete="off" />
+    <ul id="suggestions" class="suggestions-list"></ul>
+  </div>
+</header>
+
+<div class="logo-container">
+ <img src="caleb.png" alt="Caleb Analytical Solutions Logo" style="width: 350px; height: auto;" />
+</div>
+
+<section class="content-section">
+  <h2>About Caleb Analytical Solutions</h2>
+  <p>
+    Founded by Caleb Motlatsi Phali with over 15 years of expertise, Caleb Analytical Solutions delivers trusted analytical services in material characterization, chemical analysis, and metallography. We partner with leading consultants to provide precise, actionable insights to industries and academia across Africa.
+  </p>
+</section>
+
+<section class="content-section">
+  <h2>Our Vision</h2>
+  <p>
+    To be a leading force in material characterisation, earning the respect and trust of our clients and stakeholders through innovative and accurate analytical solutions.
+  </p>
+</section>
+
+<section class="content-section">
+  <h2>Capabilities</h2>
+  <p>
+    Matrix Analysis, Sample Preparation, Analytical Accuracy, Mineral Processing, Problem Solving, Microscopic Execution, Water Analysis, Consultation, Troubleshooting, Alloy Verification, Analytical Chemistry, Method Development, Biodiesel Characterisation, and more.
+  </p>
+</section>
+
+<section class="customers-section">
+  <h2>Our Customers</h2>
+  <div class="customer-logos" tabindex="0" aria-label="Customer logos gallery">
+    <!-- Replace src with actual logo image filenames -->
+    <img src="UKZN.png" alt="Customer 1" />
+    <img src="UJ.jpeg" alt="Customer 2" />
+    <img src="ECOLAB.png" alt="Customer 3" />
+    <img src="MINNA.jpeg" alt="Customer 4" />
+    <img src="NELSON.png" alt="Customer 5" />
+    <img src="CERMALAB.jpg" alt="Customer 6" />
+    <img src="FREUDENBERG.png" alt="Customer 7" />
+    <img src="AGRISA.jpeg" alt="Customer 8" />
+    <img src="KP.png" alt="Customer 9" />
+    <img src="MEDINOX-LOGO.jpg" alt="Customer 10" />
+    <img src="DUT.jpg" alt="Customer 11" />
+    <img src="UWC.png" alt="Customer 12" />
+    <img src="1.png" alt="Customer 13" />
+    <img src="2.png" alt="Customer 14" />
+    <img src="3.png" alt="Customer 15" />
+    <img src="4.png" alt="Customer 16" />
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Caleb Analytical Solutions. All rights reserved.
+</footer>
+
+<script>
+  const services = [
+    { keyword: 'Consultation', url: 'services.html#consultation' },
+    { keyword: 'Consulting', url: 'services.html#consultation' },
+    { keyword: 'Mineral Processing', url: 'services.html#mineral-processing' },
+    { keyword: 'Sample Preparation', url: 'services.html#sample-preparation' },
+    { keyword: 'Metallography', url: 'services.html#metallography' },
+    { keyword: 'Material Characterisation', url: 'services.html#material-characterisation' },
+    { keyword: 'Chemical Analysis', url: 'services.html#chemical-analysis' },
+    { keyword: 'Analytical Chemistry', url: 'services.html#analytical-chemistry' },
+    { keyword: 'Troubleshooting', url: 'services.html#troubleshooting' },
+    { keyword: 'Biodiesel Characterisation', url: 'services.html#biodiesel-characterisation' },
+    { keyword: 'Sample Mounting', url: 'services.html#sample-preparation' },
+    { keyword: 'Problem Solving', url: 'services.html#troubleshooting' }
+  ];
+
+  const input = document.getElementById('search-input');
+  const suggestionsList = document.getElementById('suggestions');
+
+  input.addEventListener('input', () => {
+    const query = input.value.trim().toLowerCase();
+    suggestionsList.innerHTML = '';
+
+    if (!query) {
+      suggestionsList.style.display = 'none';
+      return;
+    }
+
+    const matched = services.filter(s =>
+      s.keyword.toLowerCase().startsWith(query)
+    );
+
+    if (matched.length === 0) {
+      suggestionsList.style.display = 'none';
+      return;
+    }
+
+    matched.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item.keyword;
+      li.addEventListener('click', () => {
+        window.location.href = item.url;
+      });
+      suggestionsList.appendChild(li);
+    });
+
+    suggestionsList.style.display = 'block';
+  });
+
+  // Hide suggestions if clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-container')) {
+      suggestionsList.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

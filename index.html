@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caleb Analytical Solutions</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9fbff;
+      color: #002B5B;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    img.logo {
+      max-width: 250px;
+      width: 80vw;
+      margin-bottom: 20px;
+    }
+
+    h1.slogan {
+      font-size: 24px;
+      margin-bottom: 40px;
+      color: #004B8E;
+    }
+
+    nav {
+      margin-bottom: 40px;
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #002B5B;
+      font-weight: bold;
+      border: 2px solid #002B5B;
+      padding: 10px 18px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #002B5B;
+      color: white;
+    }
+
+    .search-container {
+      max-width: 400px;
+      width: 100%;
+      position: relative;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      border-radius: 30px;
+      border: none;
+      background-color: #004B8E;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      outline: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+    }
+
+    .search-container input::placeholder {
+      color: white;
+      font-style: italic;
+    }
+
+    ul#suggestions {
+      position: absolute;
+      width: 100%;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-top: none;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      z-index: 10;
+      border-radius: 0 0 10px 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    ul#suggestions li {
+      padding: 10px;
+      cursor: pointer;
+      color: #002B5B;
+    }
+
+    ul#suggestions li:hover {
+      background-color: #e6f0ff;
+    }
+
+    footer {
+      margin-top: 80px;
+      font-size: 14px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<img src="caleb.png" alt="Caleb Analytical Solutions Logo" style="width: 350px; height: auto;" />
+  <h1 class="slogan">Gives You The Edge In Chemical Analysis</h1>
+
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="search-container">
+    <input type="text" id="search-bar" placeholder="What are you looking for?" />
+    <ul id="suggestions"></ul>
+  </div>
+
+  <footer>&copy; 2025 Caleb Analytical Solutions</footer>
+
+  <script>
+    const searchData = [
+      { keyword: "home", url: "home.html" },
+      { keyword: "about", url: "home.html#about" },
+      { keyword: "vision", url: "home.html#vision" },
+      { keyword: "mission", url: "home.html#mission" },
+      { keyword: "contact", url: "contact.html" },
+      { keyword: "email", url: "contact.html#email" },
+      { keyword: "services", url: "services.html" },
+      { keyword: "consultation", url: "services.html#consultation" },
+      { keyword: "troubleshooting", url: "services.html#troubleshooting" },
+      { keyword: "sample preparation", url: "services.html#sample-preparation" },
+      { keyword: "material characterisation", url: "services.html#material-characterisation" },
+      { keyword: "chemical analysis", url: "services.html#chemical-analysis" },
+      { keyword: "metallography", url: "services.html#metallography" },
+      { keyword: "biodiesel", url: "services.html#biodiesel-characterisation" },
+      { keyword: "analytical chemistry", url: "services.html#analytical-chemistry" },
+      { keyword: "mineral processing", url: "services.html#mineral-processing" }
+    ];
+
+    const searchBar = document.getElementById('search-bar');
+    const suggestionsBox = document.getElementById('suggestions');
+
+    searchBar.addEventListener('input', () => {
+      const query = searchBar.value.toLowerCase().trim();
+      suggestionsBox.innerHTML = '';
+
+      if (query.length === 0) {
+        suggestionsBox.style.display = 'none';
+        return;
+      }
+
+      const results = searchData.filter(item =>
+        item.keyword.toLowerCase().includes(query)
+      );
+
+      if (results.length > 0) {
+        results.forEach(result => {
+          const li = document.createElement('li');
+          li.textContent = result.keyword;
+          li.addEventListener('click', () => {
+            window.location.href = result.url;
+          });
+          suggestionsBox.appendChild(li);
+        });
+        suggestionsBox.style.display = 'block';
+      } else {
+        suggestionsBox.style.display = 'none';
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.search-container')) {
+        suggestionsBox.style.display = 'none';
+      }
+    });
+  </script>
+
+</body>
+</html>
